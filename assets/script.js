@@ -24,9 +24,10 @@ const arrowRight = document.querySelector("#js-arrow_right");
 
 // Récupération et création des bullets points en fonction du nombre d'images dans le tableau "slides".
 const dotContainer = document.querySelector("#js-dots");
-const dotCount = slides.length - 1;
+const dotCount = slides.length - 1; // une variable de type tableau commence toujours à 0 et non pas à 1.
 
 for (let i = 0; i <= dotCount; i++) {
+  // boucle for
   const newDot = document.createElement("span"); // creation de element
   newDot.classList.add("dot"); // add class a cet element
   dotContainer.appendChild(newDot); // add in container .
@@ -39,8 +40,6 @@ const dots = document.querySelectorAll(".dot");
 let currentSlide = 0;
 
 function updateCarousel(current) {
-  const banner = document.querySelector("#js-banner-img");
-  const textBanner = document.querySelector("#js-text-img");
   // Mise à jour des bullets
   dots.forEach((item, index) => {
     if (index === current) {
@@ -51,13 +50,17 @@ function updateCarousel(current) {
   });
 
   // Mise à jour de l'image et du texte.
-
+  const banner = document.querySelector("#js-banner-img");
+  const textBanner = document.querySelector("#js-text-img");
   const currentImage = slides[current].image;
   const currentText = slides[current].tagLine;
+
   banner.src = `./assets/images/slideshow/${currentImage}`;
   textBanner.innerHTML = currentText;
   console.log(current);
 }
+
+////
 
 dots.forEach((item, index) => {
   item.addEventListener("click", () => {
@@ -72,6 +75,7 @@ arrowRight.addEventListener("click", () => {
   } else {
     currentSlide = 0;
   }
+  console.log("arrow right");
   updateCarousel(currentSlide);
 });
 
@@ -81,6 +85,7 @@ arrowLeft.addEventListener("click", () => {
   } else {
     currentSlide--;
   }
+  console.log("arrow left");
   updateCarousel(currentSlide);
 });
 
